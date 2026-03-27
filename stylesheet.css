@@ -199,7 +199,7 @@ h1 {
   height: 12em;
   float: left;
   overflow: hidden;
-  border-radius: 1em;
+  border-radius: 0.5em;
 }
 
 #intro-image img {
@@ -300,6 +300,7 @@ h2 {
 
 .previews {
   display: flex;
+  flex-wrap: nowrap;
   justify-content: flex-start;
   gap: 20px;
   height: 10em;
