@@ -1,191 +1,253 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en">
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Leixin Chang</title>
   <meta name="author" content="Leixin Chang">
-  <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="stylesheet.css">
+  <meta name="viewport" content="width=1000">
+  <meta name="description"
+    content="Leixin Chang - PhD Student at Physical Intelligence Lab, ZJU-UIUC Institute, Zhejiang University. Research in legged robots, optimal control, and deep reinforcement learning.">
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+
 </head>
 
-<body>
-  <header>
-    <h1>Leixin Chang (常磊鑫)</h1>
-  </header>
+<body id="body">
 
-  <main>
-    <section id="about">
-      <div class="about-container">
-        <img src="images/leixin_chang.jpg" alt="Leixin Chang" class="about-image">
+  <div id="main">
+    <div id="intro">
+      <div id="intro-text">
+        <h1>Leixin Chang</h1>
+        <p>
+          I'm a PhD student in <a href="https://physicalintelligence-lab.github.io/">Physical Intelligence Lab</a> at
+          <a href="https://zjui.intl.zju.edu.cn/en">ZJU-UIUC Institute</a> of
+          <a href="https://www.zju.edu.cn/english/">Zhejiang University</a> in Hangzhou, China, and co-advised by Dr.
+          <a href="https://physicalintelligence-lab.github.io/">Hua Chen</a> and Dr. <a
+            href="https://rvclab.github.io/">Liangjing Yang</a>.
+        </p>
+        <p>
+          I'm interested in <b>legged robot</b>, <b>optimal control</b> and <b>deep reinforcement learning</b>. My
+          research focuses on how to infuse intelligence into robotic physical interactions.
+        </p>
+        <br>
+        <a href="mailto:leixinchang666@gmail.com">Email</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a
+          href="https://scholar.google.com/citations?user=Rc70LsQAAAAJ&hl=zh-CN&oi=ao">Scholar</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="https://x.com/leixinchang">Twitter</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="https://github.com/Leixinjonaschang">Github</a>
+        <br><br>
+      </div>
+      <div id="intro-image">
+        <img src="images/leixin_chang.jpg">
+      </div>
+    </div>
 
-        <div class="about-content">
-          <nav>
-            <a href="mailto:leixinchang666@gmail.com">Email</a> |
-            <a href="https://scholar.google.com/citations?user=Rc70LsQAAAAJ&hl=zh-CN&oi=ao">Scholar</a> |
-            <a href="https://x.com/leixinchang">Twitter</a> |
-            <a href="https://github.com/Leixinjonaschang">Github</a>
-          </nav>
+    <div id="filters" class="button-group">
+      <button class="button" data-filter=".highlight">Highlights</button>
+      <button class="button is-checked" data-filter=".publication">Publications</button>
+      <button class="button" data-filter=".misc">Misc</button>
+    </div>
 
+    <div class="grid">
+
+      <!-- Preview Videos -->
+      <div class="list-item highlight previews" data-category="highlight">
+        <a href="https://leixinjonaschang.github.io/leggedloadadapt.github.io/"><video class="preview1" playsinline=""
+            muted="" autoplay="" loop="">
+            <source src="video/load_adapt.mp4" type="video/mp4">
+          </video></a>
+
+        <a href="https://leixinchang.me"><video class="preview2" playsinline="" muted="" autoplay="" loop="">
+            <source src="video/convex_animation_cropped.mp4" type="video/mp4">
+          </video></a>
+      </div>
+
+      <!-- Highlights -->
+      <div class="list-item highlight" data-category="highlight">
+        <p class="date">2026</p>Paper accepted at <a href="https://wheretolearn.github.io/">RA-L 2026</a>:
+        Where-to-Learn: Analytical Policy Gradient Directed Exploration for On-Policy Robotic Reinforcement Learning
+      </div>
+
+      <div class="list-item highlight" data-category="highlight">
+        <p class="date">2025</p>Paper accepted at <a
+          href="https://leixinjonaschang.github.io/leggedloadadapt.github.io/">ICRA 2025</a>: Beyond Robustness –
+        Learning Unknown Dynamic Load Adaptation for Quadruped Locomotion
+      </div>
+
+      <div class="list-item highlight" data-category="highlight">
+        <p class="date">2025</p>I've joined the <a href="https://physicalintelligence-lab.github.io/">Physical
+          Intelligence Lab</a> as a PhD student.
+      </div>
+
+      <div class="list-item highlight" data-category="highlight">
+        <p class="date">2024</p>Best Presentation Award — 1st ZJU AI+Robotics PhD Forum
+      </div>
+
+      <div class="list-item highlight" data-category="highlight">
+        <p class="date">2024</p><a href="https://ieeexplore.ieee.org/abstract/document/10637033/">Oral Presentation</a>
+        at IEEE/ASME AIM 2024: Convex Optimization Based Mobile Robot Planner for Crowd Navigation
+      </div>
+
+      <div class="list-item highlight" data-category="highlight">
+        <p class="date">2023</p><a href="https://leixinchang.me">Best Paper Award</a> at ICRAE 2023: Dynamic 3D
+        Reconstruction using Moving Depth Camera
+      </div>
+
+      <!-- Publications -->
+      <div class="list-item publication" data-category="publication">
+        <a href="https://wheretolearn.github.io/" class="thumbnail">
+          <img src="images/apg_aug_explore.png" alt="" />
+        </a>
+        <div class="project-description">
+          <h3><a href="https://wheretolearn.github.io/">Where-to-Learn: Analytical Policy Gradient Directed Exploration
+              for On-Policy Robotic Reinforcement Learning</a></h3>
           <p>
-            I'm a PhD student in <a href="https://physicalintelligence-lab.github.io/">Physical Intelligence Lab</a> at
-            <a href="https://zjui.intl.zju.edu.cn/en">ZJU-UIUC Institute</a> of
-            <a href="https://www.zju.edu.cn/english/">Zhejiang University</a> in Hangzhou, China, and co-advised by Dr.
-            <a href="https://physicalintelligence-lab.github.io/">Hua Chen</a> and Dr. <a
-              href="https://rvclab.github.io/">Liangjing Yang</a>.
+            <b>Leixin Chang</b>, Xinchen Yao, Ben Liu, Liangjing Yang, Hua Chen.<br>
+            <i>IEEE Robotics and Automation Letters (RA-L)</i><br>
+            <a href="https://wheretolearn.github.io/">Webpage</a>
           </p>
         </div>
       </div>
-    </section>
 
-    <section id="research">
-      <h2>Research</h2>
-      <p>
-        I'm interested in <strong>legged robot</strong>, <strong>optimal control</strong> and <strong>deep reinforcement
-          learning</strong>.
-        My research focuses on how to infuse intelligence into robotic physical interactions.
-      </p>
-    </section>
-
-    <section id="publications">
-      <h2>Publications</h2>
-
-      <article class="publication">
-        <div class="pub-image">
-          <video width="160" height="160" muted autoplay loop>
+      <div class="list-item publication" data-category="publication">
+        <a href="https://leixinjonaschang.github.io/leggedloadadapt.github.io/" class="thumbnail">
+          <video playsinline="" muted="" autoplay="" loop="" width="180px">
             <source src="video/load_adapt.mp4" type="video/mp4">
-            Your browser does not support the video tag.
           </video>
+        </a>
+        <div class="project-description">
+          <h3><a href="https://leixinjonaschang.github.io/leggedloadadapt.github.io/">Beyond Robustness: Learning
+              Unknown Dynamic Load Adaptation for Quadruped Locomotion on Rough Terrain</a></h3>
+          <p>
+            <b>Leixin Chang</b>, Yuxuan Nai, Hua Chen, Liangjing Yang.<br>
+            <i>International Conference on Robotics and Automation (ICRA) 2025</i><br>
+            <a
+              href="https://leixinjonaschang.github.io/leggedloadadapt.github.io/">Webpage</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;
+            <a href="https://arxiv.org/abs/2507.07825">Paper</a>
+          </p>
         </div>
-        <div class="pub-content">
-          <a href="https://leixinjonaschang.github.io/leggedloadadapt.github.io/">
-            <span class="papertitle">Beyond Robustness: Learning Unknown Dynamic Load Adaptation for Quadruped
-              Locomotion on Rough Terrain</span>
-          </a>
-          <br>
-          <strong>Leixin Chang</strong>,
-          <a href="https://www.linkedin.com/in/yuxuan-nai-275478318/">Yuxuan Nai</a>,
-          <a href="https://person.zju.edu.cn/huachen">Hua Chen</a>,
-          <a href="https://rvclab.github.io/author/liangjing-yang/">Liangjing Yang</a>.
-          <br>
-          <em>ICRA</em>, 2025
-          <br>
-          <a href="https://leixinjonaschang.github.io/leggedloadadapt.github.io/">Project page</a> |
-          <a href="https://arxiv.org/abs/2507.07825">arXiv</a>
-        </div>
-      </article>
+      </div>
 
-      <article class="publication">
-        <div class="pub-image">
-          <img src="images/apg_aug_explore.png" alt="Where-to-Learn" width="160">
-        </div>
-        <div class="pub-content">
-          <a href="https://wheretolearn.github.io/">
-            <span class="papertitle">Where-to-Learn: Analytical Policy Gradient Directed Exploration for On-Policy
-              Robotic Reinforcement Learning</span>
-          </a>
-          <br>
-          <strong>Leixin Chang</strong>,
-          <a href="https://yao-xinchen.github.io/">Xinchen Yao</a>,
-          Ben Liu,
-          <a href="https://rvclab.github.io/author/liangjing-yang/">Liangjing Yang</a>,
-          <a href="https://person.zju.edu.cn/huachen">Hua Chen</a>.
-          <br>
-          <em>RA-L</em>
-          <br>
-          <a href="https://wheretolearn.github.io/">Project page</a>
-        </div>
-      </article>
-
-      <article class="publication">
-        <div class="pub-image">
-          <video width="160" height="160" muted autoplay loop>
-            <source src="video/convex_animation.mp4" type="video/mp4">
-            Your browser does not support the video tag.
+      <div class="list-item publication" data-category="publication">
+        <a href="https://leixinchang.me" class="thumbnail">
+          <video playsinline="" muted="" autoplay="" loop="" width="180px">
+            <source src="video/convex_animation_cropped.mp4" type="video/mp4">
           </video>
+        </a>
+        <div class="project-description">
+          <h3><a href="https://leixinchang.me">A Convex Optimization Based Differentially Driven Mobile Robot Planner
+              for Crowd Navigation</a></h3>
+          <p>
+            <b>Leixin Chang</b>, Haoran Yuan, Tengyue Wang, Haonan Mai, Liangjing Yang.<br>
+            <i>IEEE/ASME International Conference on Advanced Intelligent Mechatronics (AIM) 2024</i>
+            <a href="https://ieeexplore.ieee.org/abstract/document/10637033/">Paper</a>
+          </p>
         </div>
-        <div class="pub-content">
-          <a href="https://leixinchang.me">
-            <span class="papertitle">A Convex Optimization Based Differentially Driven Mobile Robot Planner for Crowd
-              Navigation</span>
-          </a>
-          <br>
-          <strong>Leixin Chang</strong>, Haoran Yuan, Tengyue Wang, Haonan Mai,
-          <a href="https://rvclab.github.io/author/liangjing-yang/">Liangjing Yang</a>.
-          <br>
-          <em>AIM</em>, 2024 <span class="highlight">★ Oral Presentation</span>
-          <br>
-          <a href="https://leixinchang.me">Project page</a> |
-          <a href="https://ieeexplore.ieee.org/abstract/document/10637033/">Paper</a>
-          <p>A local planner for differentially driven mobile robot navigating in highly dynamic environments.</p>
+      </div>
+
+      <div class="list-item publication" data-category="publication">
+        <a href="https://leixinchang.me" class="thumbnail">
+          <img src="images/dyn_3drecon_icrae2023.jpg" alt="" />
+        </a>
+        <div class="project-description">
+          <h3><a href="https://leixinchang.me">Dynamic 3D Reconstruction using Moving Depth Camera Mounted on Robotic
+              Arm</a></h3>
+          <p>
+            Haonan Mai, Xianhao Chen, <b>Leixin Chang</b>, Liangjing Yang.<br>
+            <i>International Conference on Robotics, Automation and Education (ICRAE) 2023</i><br>
+            <font color="49bf9"><i>&#9733; Best Paper Award &#9733;</i></font>
+          </p>
         </div>
-      </article>
+      </div>
 
-      <article class="publication">
-        <div class="pub-image">
-          <img src="images/dyn_3drecon_icrae2023.jpg" alt="Dynamic 3D Reconstruction" width="160">
-        </div>
-        <div class="pub-content">
-          <a href="https://leixinchang.me">
-            <span class="papertitle">Dynamic 3D Reconstruction using Moving Depth Camera Mounted on Robotic Arm</span>
-          </a>
-          <br>
-          Haonan Mai, Xianhao Chen, <strong>Leixin Chang</strong>,
-          <a href="https://rvclab.github.io/author/liangjing-yang/">Liangjing Yang</a>.
-          <br>
-          <em>ICRAE</em>, 2023 <span class="highlight">★ Best Paper Award</span>
-        </div>
-      </article>
-    </section>
+      <!-- Misc -->
+      <div class="list-item misc" data-category="misc">
+        <h3><strong>Awards</strong></h3>
+      </div>
 
-    <section id="news">
-      <h2>News</h2>
-      <ul>
-        <li>
-          <strong>[Feb 2025]</strong> I've joined the <a href="https://physicalintelligence-lab.github.io/">Physical
-            Intelligence Lab</a> as a PhD student.
-        </li>
-      </ul>
-    </section>
+      <div class="list-item misc" data-category="misc">
+        <p class="date">2025</p>Best Presentation Award — 1st ZJU AI+Robotics PhD Forum, Huzhou Institute of ZJU
+      </div>
 
-    <section id="awards">
-      <h2>Awards</h2>
-      <ul class="award-list">
-        <li>
-          <span class="award-badge">Best Presentation Award</span>
-          1st ZJU AI+Robotics PhD Forum, Huzhou Institute of ZJU, Dec 2025
-        </li>
-        <li>
-          <span class="award-badge">Excellent Master Student</span>
-          Zhejiang University, Oct 2024
-        </li>
-        <li>
-          <span class="award-badge">Outstanding Graduate Student</span>
-          Guangdong University of Technology, Jun 2023
-        </li>
-        <li>
-          <span class="award-badge">Outstanding Senior Design Award</span>
-          Guangdong University of Technology, Jun 2023
-        </li>
-      </ul>
-    </section>
+      <div class="list-item misc" data-category="misc">
+        <p class="date">2024</p>Excellent Master Student — Zhejiang University
+      </div>
 
-    <section id="service">
-      <h2>Service</h2>
-      <p><strong>Conference Reviewer:</strong> ICRA ('26, '25), CASE ('25), IROS ('24)</p>
-    </section>
+      <div class="list-item misc" data-category="misc">
+        <p class="date">2023</p>Outstanding Graduate Student — Guangdong University of Technology
+      </div>
 
-    <section id="teaching">
-      <h2>Teaching</h2>
-      <ul>
-        <li><strong>Fall 2024</strong> — Control Theory, Teaching Assistant, ZJU-UIUC Institute, Zhejiang University
-        </li>
-        <li><strong>Fall 2024</strong> — Mathematics and Statistics, Teaching Assistant, ZIBS, Zhejiang University</li>
-      </ul>
-    </section>
-  </main>
+      <div class="list-item misc" data-category="misc">
+        <p class="date">2023</p>Outstanding Senior Design Award — Guangdong University of Technology
+      </div>
+
+      <div class="list-item misc" data-category="misc" style="margin-top: 2em;">
+        <h3><strong>Service</strong></h3>
+      </div>
+
+      <div class="list-item misc" data-category="misc">
+        <p class="date"></p>Conference Reviewer: ICRA ('26, '25), CASE ('25), IROS ('24)
+      </div>
+
+      <div class="list-item misc" data-category="misc" style="margin-top: 2em;">
+        <h3><strong>Teaching</strong></h3>
+      </div>
+
+      <div class="list-item misc" data-category="misc">
+        <p class="date"></p>TA, Robot Dynamics and Control, ZJU-UIUC Institute, Zhejiang University (Spring 2026)
+      </div>
+
+      <div class="list-item misc" data-category="misc">
+        <p class="date"></p>TA, Control Theory, ZJU-UIUC Institute, Zhejiang University (Fall 2025)
+      </div>
+
+      <div class="list-item misc" data-category="misc">
+        <p class="date"></p>TA, Mathematics and Statistics, ZIBS, Zhejiang University (Fall 2024)
+      </div>
+
+    </div>
+
+    <div id="footer">
+      Website template by <a href="https://andyzeng.github.io/">Andy Zeng</a>.
+    </div>
+
+  </div>
+
+  <!-- Isotope JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+  <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+
+  <script>
+    // Isotope grid
+    var $grid = $('.grid').isotope({
+      itemSelector: '.list-item',
+      layoutMode: 'fitRows',
+      transitionDuration: 0,
+      stagger: 10,
+      initLayout: true,
+      filter: '.publication',
+      getSortData: {
+        category: '[data-category]'
+      }
+    });
+
+    // Filter on button click
+    $('.button-group').on('click', 'button', function () {
+      var filterValue = $(this).attr('data-filter');
+      $grid.isotope({ filter: filterValue });
+    });
+
+    // Change active button
+    $('.button-group').each(function (i, buttonGroup) {
+      var $buttonGroup = $(buttonGroup);
+      $buttonGroup.on('click', 'button', function () {
+        $buttonGroup.find('.is-checked').removeClass('is-checked');
+        $(this).addClass('is-checked');
+      });
+    });
+  </script>
+
 </body>
 
 </html>
