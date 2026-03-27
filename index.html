@@ -48,8 +48,8 @@
     </div>
 
     <div id="filters" class="button-group">
-      <button class="button" data-filter=".highlight">Highlights</button>
-      <button class="button is-checked" data-filter=".publication">Publications</button>
+      <button class="button is-checked" data-filter=".highlight">Highlights</button>
+      <button class="button" data-filter=".publication">Publications</button>
       <button class="button" data-filter=".misc">Misc</button>
     </div>
 
@@ -57,6 +57,10 @@
 
       <!-- Preview Videos -->
       <div class="list-item highlight previews" data-category="highlight">
+        <a href="https://leixinchang.me"><video class="preview2" playsinline="" muted="" autoplay="" loop="">
+            <source src="video/humanoid_gap_traverse.mp4" type="video/mp4">
+          </video></a>
+
         <a href="https://leixinjonaschang.github.io/leggedloadadapt.github.io/"><video class="preview1" playsinline=""
             muted="" autoplay="" loop="">
             <source src="video/load_adapt.mp4" type="video/mp4">
@@ -91,7 +95,8 @@
 
       <div class="list-item highlight" data-category="highlight">
         <p class="date">2024</p><span class="item-text"><a
-            href="https://ieeexplore.ieee.org/abstract/document/10637033/">Oral Presentation</a> at IEEE/ASME AIM 2024:
+            href="https://ieeexplore.ieee.org/abstract/document/10637033/">Oral Presentation</a> at IEEE/ASME AIM
+          2024:
           Convex Optimization Based Mobile Robot Planner for Crowd Navigation</span>
       </div>
 
@@ -106,7 +111,8 @@
           <img src="images/apg_aug_explore.png" alt="" />
         </a>
         <div class="project-description">
-          <h3><a href="https://wheretolearn.github.io/">Where-to-Learn: Analytical Policy Gradient Directed Exploration
+          <h3><a href="https://wheretolearn.github.io/">Where-to-Learn: Analytical Policy Gradient Directed
+              Exploration
               for On-Policy Robotic Reinforcement Learning</a></h3>
           <p>
             <b>Leixin Chang</b>, Xinchen Yao, Ben Liu, Liangjing Yang, Hua Chen.<br>
@@ -184,7 +190,8 @@
       </div>
 
       <div class="list-item misc" data-category="misc">
-        <p class="date">2025</p><span class="item-text">Best Presentation Award — 1st ZJU AI+Robotics PhD Forum, Huzhou
+        <p class="date">2025</p><span class="item-text">Best Presentation Award — 1st ZJU AI+Robotics PhD Forum,
+          Huzhou
           Institute of ZJU</span>
       </div>
 
@@ -207,7 +214,8 @@
       </div>
 
       <div class="list-item misc" data-category="misc">
-        <p class="date"></p><span class="item-text">Conference Reviewer: ICRA ('26, '25), CASE ('25), IROS ('24)</span>
+        <p class="date"></p><span class="item-text">Conference Reviewer: ICRA ('26, '25), CASE ('25), IROS
+          ('24)</span>
       </div>
 
       <div class="list-item misc" data-category="misc" style="margin-top: 2em;">
@@ -250,7 +258,7 @@
       transitionDuration: 0,
       stagger: 10,
       initLayout: true,
-      filter: '.publication',
+      filter: '.highlight',
       getSortData: {
         category: '[data-category]'
       }

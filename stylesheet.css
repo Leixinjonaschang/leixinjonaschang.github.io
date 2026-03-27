@@ -302,11 +302,11 @@ h2 {
   display: flex;
   justify-content: flex-start;
   gap: 20px;
-  height: 12em;
+  height: 10em;
 }
 
 .previews video {
-  height: 12em;
+  height: 10em;
   display: block;
 }
 
@@ -315,7 +315,7 @@ h2 {
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  height: 12em;
+  height: 10em;
 }
 
 .previews a:hover {
