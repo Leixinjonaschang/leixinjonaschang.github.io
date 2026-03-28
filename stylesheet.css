@@ -394,6 +394,29 @@ h3 a:hover {
 }
 
 /**************************************************/
+/* Publication link buttons. */
+
+.pub-link {
+  display: inline-block;
+  padding: 2px 10px;
+  margin-right: 4px;
+  margin-top: 4px;
+  border: 1px solid #146ebe;
+  border-radius: 4px;
+  color: #146ebe;
+  font-size: 0.85em;
+  line-height: 1.6em;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.pub-link:hover {
+  background-color: #146ebe;
+  color: #fff;
+  border-bottom: 1px solid #146ebe;
+}
+
+/**************************************************/
 /* Subtle footer at the bottom of the page. */
 
 #footer {
