@@ -365,6 +365,26 @@ h2 {
   height: 100%;
 }
 
+/* Show the left half of the wide Whole-Body UMI hero video as a portrait cover. */
+.half-video-thumbnail {
+  position: relative;
+  aspect-ratio: 8 / 9;
+  margin-top: 0.4em;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.half-video-thumbnail video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  max-width: none;
+  height: 100%;
+  margin-top: 0;
+  border-radius: 0;
+}
+
 h3 {
   font-size: 1em;
   line-height: 1.5em;
