@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Leixin Chang is a robotics researcher working on reinforcement learning for legged locomotion and loco-manipulation.">
+  <meta name="description" content="Leixin Chang is a robotics researcher working on humanoid, quadruped, and wheeled-biped locomotion.">
   <meta name="theme-color" content="#f8f9fb">
   <title>Leixin Chang · Robotics Researcher</title>
   <link rel="icon" href="images/page_icon.png" type="image/png">
@@ -27,23 +27,34 @@
       <img class="portrait" src="images/leixin_chang.jpg" alt="Portrait of Leixin Chang" width="192" height="192">
     </header>
 
-    <section class="work" aria-labelledby="work-title">
+    <section class="research" aria-labelledby="research-title">
       <div class="section-heading">
-        <h2 id="work-title">Selected work</h2>
+        <h2 id="research-title">Research areas</h2>
         <a href="https://scholar.google.com/citations?user=Rc70LsQAAAAJ">All publications <span aria-hidden="true">↗</span></a>
       </div>
-      <article class="work-item">
-        <div class="work-meta">RA-L · 2026 · First author</div>
-        <h3>Directed exploration for robotic reinforcement learning</h3>
-        <p>Used analytical policy gradients to guide PPO exploration; evaluated the method in simulation and on a LimX TRON robot.</p>
-        <div class="work-links"><a href="https://wheretolearn.github.io/">Project page <span aria-hidden="true">↗</span></a><a href="https://arxiv.org/abs/2603.27317">Paper <span aria-hidden="true">↗</span></a></div>
-      </article>
-      <article class="work-item">
-        <div class="work-meta">ICRA · 2025 · First author</div>
-        <h3>Dynamic load adaptation for quadruped locomotion</h3>
-        <p>Developed a teacher-student policy for unknown loads and validated it on a Unitree Go2 across rough terrain.</p>
-        <div class="work-links"><a href="https://leixinjonaschang.github.io/leggedloadadapt.github.io/">Project page <span aria-hidden="true">↗</span></a><a href="https://arxiv.org/abs/2507.07825">Paper <span aria-hidden="true">↗</span></a></div>
-      </article>
+      <div class="research-grid">
+        <article class="research-card">
+          <video controls muted loop playsinline autoplay preload="metadata" poster="video/humanoid_locomotion.jpg" aria-label="Humanoid robots traversing gaps in simulation">
+            <source src="video/humanoid_locomotion.mp4" type="video/mp4">
+          </video>
+          <h3>Humanoid locomotion</h3>
+          <p>Terrain-aware, whole-body control with motion priors for adaptive movement across gaps and obstacles.</p>
+        </article>
+        <article class="research-card">
+          <video controls muted loop playsinline autoplay preload="metadata" poster="video/quadruped_locomotion.jpg" aria-label="Quadruped robot carrying a load across rough terrain in simulation">
+            <source src="video/quadruped_locomotion.mp4" type="video/mp4">
+          </video>
+          <h3>Quadruped locomotion</h3>
+          <p>Robust learned policies for changing payloads and rough terrain, validated on the Unitree Go2.</p>
+        </article>
+        <article class="research-card">
+          <video controls muted loop playsinline autoplay preload="metadata" poster="video/wheeled_biped_locomotion.jpg" aria-label="Wheeled-biped robot rolling and stepping over an obstacle">
+            <source src="video/wheeled_biped_locomotion.mp4" type="video/mp4">
+          </video>
+          <h3>Wheeled-biped locomotion</h3>
+          <p>A unified perceptive policy combines efficient rolling with stepping across uneven terrain.</p>
+        </article>
+      </div>
     </section>
 
     <section class="more" aria-labelledby="more-title">
@@ -57,5 +68,13 @@
       <a href="mailto:leixin.23@intl.zju.edu.cn">leixin.23@intl.zju.edu.cn</a>
     </footer>
   </main>
+  <script>
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('video[autoplay]').forEach((video) => {
+        video.pause();
+        video.removeAttribute('autoplay');
+      });
+    }
+  </script>
 </body>
 </html>
