@@ -159,6 +159,7 @@ const f1 = (v) => v.toFixed(1);
 // past the dimension line; a thin dimension line parallel to the measured feature with slender filled arrowheads;
 // the number centred just above the line and parallel to it, vertical ones reading from the right of the sheet;
 // parallel dimension lines stacked with the shortest nearest the model.
+const dimBoxes = [];
 function drawOverlay() {
   const out = [];
   const box = { x0: Infinity, y0: Infinity, x1: -Infinity, y1: -Infinity };
@@ -182,6 +183,8 @@ function drawOverlay() {
     }
     const o = project(centre);
     const pictorial = state.view === 'iso' || state.view === 'free';
+    dimBoxes.length = 0;
+    const groupSide = new Map();                         // dimensions of one group stay on the corner its first member took
     for (const d of shown) {
       let A = V3(d.a), B = V3(d.b), e = V3(d.e);
       // on-screen length of one model unit along e: the plane of this dimension must face the viewer
@@ -189,20 +192,22 @@ function drawOverlay() {
       if (pictorial) {
         // overall dimensions may sit on any of the four mirrored sides of the frame: take the one that lands
         // furthest out on screen, so the lines stay clear of the model from every orbit angle
-        let best = -1;
-        for (const [sx, sy] of [[1, 1], [-1, 1], [1, -1], [-1, -1]]) {
+        let best = -1, chosen = null;
+        const fixed = d.group ? groupSide.get(d.group) : null;
+        for (const [sx, sy] of fixed ? [fixed] : [[1, 1], [-1, 1], [1, -1], [-1, -1]]) {
           const flip = (v) => new THREE.Vector3(v.x * sx, v.y * sy, v.z);
           const a = flip(V3(d.a)), b = flip(V3(d.b)), n = flip(V3(d.e));
           if (unitLen(n) < 0.35 * camera.zoom) continue;
           const m = project(a.clone().add(b).multiplyScalar(0.5).addScaledVector(n, 300));
           const score = Math.hypot(m[0] - o[0], m[1] - o[1]) * (sx + sy === 2 ? 1.15 : 1);
-          if (score > best) { best = score; A = a; B = b; e = n; }
+          if (score > best) { best = score; A = a; B = b; e = n; chosen = [sx, sy]; }
         }
+        if (d.group && !fixed && chosen) groupSide.set(d.group, chosen);
       }
       const scale = unitLen(e);
       if (scale < 0.35 * camera.zoom) continue;
       const ae = A.dot(e), be = B.dot(e), base = d.base ?? Math.max(ae, be);
-      const off = (SHEET.first + tierOf.get(d) * SHEET.step) / scale;
+      const off = (SHEET.first + (d.tier ?? tierOf.get(d)) * SHEET.step) / scale;
       const A2 = A.clone().addScaledVector(e, base - ae + off), B2 = B.clone().addScaledVector(e, base - be + off);
       const value = Math.round(A2.distanceTo(B2));
       const pa = project(A), pb = project(B), qa = project(A2), qb = project(B2);
@@ -217,7 +222,7 @@ function drawOverlay() {
         ex /= el; ey /= el;
         line([p[0] + ex * SHEET.gap, p[1] + ey * SHEET.gap], [q[0] + ex * SHEET.over, q[1] + ey * SHEET.over]);
       }
-      const text = String(value), tw = textWidth(text, SHEET.text);
+      const text = String(value) + (d.note || ''), tw = textWidth(text, SHEET.text);
       const inside = len >= tw + 2 * SHEET.arrow + 6;
       if (inside) {
         line(qa, qb);
@@ -243,6 +248,11 @@ function drawOverlay() {
       const lift = 3;
       out.push(`<text class="dt" font-size="${SHEET.text}" text-anchor="middle" transform="translate(${f1(mx + nx * lift)} ${f1(my + ny * lift)}) rotate(${ang.toFixed(2)})">${text}</text>`);
       const hw = tw / 2 + 2, up = lift + SHEET.text;
+      {                                                  // screen box of this number, for the camera names to avoid
+        const xs = [], ys = [];
+        for (const s of [-1, 1]) for (const u of [0, up]) { xs.push(mx + Math.cos(rad) * hw * s + nx * u); ys.push(my + Math.sin(rad) * hw * s + ny * u); }
+        dimBoxes.push([Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)]);
+      }
       for (const s of [-1, 1]) { grow(mx + Math.cos(rad) * hw * s, my + Math.sin(rad) * hw * s); grow(mx + Math.cos(rad) * hw * s + nx * up, my + Math.sin(rad) * hw * s + ny * up); }
     }
   }
@@ -257,9 +267,14 @@ function drawOverlay() {
       let ux = t[0] - p[0], uy = t[1] - p[1];
       const ul = Math.hypot(ux, uy) || 1;
       ux /= ul; uy /= ul;
-      const r = 12 + 75 * camera.zoom;
-      const x = p[0] + ux * r, y = p[1] + uy * r + size * 0.35;
-      const anchor = ux > 0.3 ? 'start' : ux < -0.3 ? 'end' : 'middle';
+      const tw0 = textWidth(part.data.name, size, 600);
+      let r = 12 + 75 * camera.zoom, x, y, anchor;
+      for (const dir of [1, -1]) {                       // behind the camera instead, when the name would cover a dimension number
+        x = p[0] + ux * r * dir; y = p[1] + uy * r * dir + size * 0.35;
+        anchor = ux * dir > 0.3 ? 'start' : ux * dir < -0.3 ? 'end' : 'middle';
+        const x0 = anchor === 'start' ? x : anchor === 'end' ? x - tw0 : x - tw0 / 2;
+        if (!dimBoxes.some((b) => x0 - 2 < b[2] && b[0] < x0 + tw0 + 2 && y - size - 2 < b[3] && b[1] < y + 4)) break;
+      }
       out.push(`<text class="cam" font-size="${size}" text-anchor="${anchor}" fill="#${FACE[part.data.mat].toString(16).padStart(6, '0')}" x="${f1(x)}" y="${f1(y)}">${part.data.name}</text>`);
       const tw = textWidth(part.data.name, size, 600);
       grow(anchor === 'start' ? x + tw : anchor === 'end' ? x - tw : x - tw / 2, y - size); grow(anchor === 'middle' ? x + tw / 2 : x, y + 2);
