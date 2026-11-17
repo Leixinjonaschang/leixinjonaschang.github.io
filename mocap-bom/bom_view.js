@@ -52,6 +52,9 @@ controls.screenSpacePanning = true;
 controls.zoomToCursor = true;
 controls.minZoom = 0.04; controls.maxZoom = 6;
 controls.target.copy(centre);
+// touch screens: the controls would claim every touch, so a swipe over the drawing could not scroll the page
+const touch = matchMedia('(pointer: coarse)').matches;
+if (touch && !shot) host.style.touchAction = 'pan-y';
 
 const FACE = { alu: 0xdde1e7, steel: 0xaab2bd, dark: 0x3a404a, wood_top: 0xdcb681, wood_leg: 0xbd8f58, upper: 0x1f4fa8, lower: 0xc8641e, extra: 0xb5226f, lens: 0x1c2027 };
 const EDGE = { alu: 0x2d343f, steel: 0x2d343f, dark: 0x14181e, wood_top: 0x80582a, wood_leg: 0x80582a, upper: 0x0f2c63, lower: 0x74370c, extra: 0x660f3c, lens: 0x000000 };
@@ -364,7 +367,8 @@ function select(bom, from, part) {
       selInfo.firstElementChild.textContent = `${bom} ${r.name} · ${r.spec} · ${r.qty} ${r.unit}` + (part && part.data.name ? `（${part.data.name}）` : '');
     }
   }
-  if (bom !== null && from === 'model' && rows.has(bom)) rows.get(bom).scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  // on a touch screen the page stays on the drawing: the row is below it, and the caption already names the part
+  if (bom !== null && from === 'model' && rows.has(bom) && !touch) rows.get(bom).scrollIntoView({ block: 'nearest', behavior: 'smooth' });
   if (bom !== null && from === 'row') host.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
   dirty = true;
   return n;
@@ -392,12 +396,31 @@ if (!shot) {
     down = null;
   });
   host.addEventListener('contextmenu', (ev) => ev.preventDefault());
+  // A swipe that the browser turns into a page scroll first reaches the controls as a few moves and is then cancelled:
+  // put the camera back where the touch began, so scrolling past the drawing never turns the model.
+  let held = null;
+  host.addEventListener('pointerdown', (ev) => {
+    if (ev.pointerType === 'touch' && ev.isPrimary) held = { p: camera.position.clone(), t: controls.target.clone(), z: camera.zoom, moved: state.userMoved, view: state.view };
+  }, true);
+  host.addEventListener('pointerup', () => { held = null; });
+  host.addEventListener('pointercancel', () => {
+    if (!held) return;
+    const damping = controls.enableDamping;
+    controls.enableDamping = false;
+    controls.update();                               // spend the leftover inertia before restoring
+    camera.position.copy(held.p); controls.target.copy(held.t); camera.zoom = held.z;
+    camera.updateProjectionMatrix();
+    controls.update();
+    controls.enableDamping = damping;
+    state.userMoved = held.moved; state.view = held.view;
+    held = null; down = null; dirty = true;
+  });
   controls.addEventListener('start', () => { state.userMoved = true; });
   for (const b of viewButtons) b.addEventListener('click', () => setView(b.dataset.view));
   for (const i of layerInputs) i.addEventListener('change', () => setLayer(i.dataset.layer, i.checked));
   for (const [id, tr] of rows) {
     const go = () => select(state.sel === id ? null : id, 'row');
-    tr.addEventListener('click', go);
+    tr.addEventListener('click', (ev) => { if (!ev.target.closest('a')) go(); });   // a shop link opens the shop, nothing else
     tr.addEventListener('keydown', (ev) => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); go(); } });
   }
   selInfo.querySelector('button').addEventListener('click', () => select(null));
